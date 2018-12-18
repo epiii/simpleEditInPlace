@@ -1,0 +1,63 @@
+<script src="jquery-1.11.3.js"></script>
+<table id="choose-address-table" class="ui-widget ui-widget-content">
+    <thead>
+        <tr class="ui-widget-header ">
+            <th>Name/Nr.</th>
+            <th>Street</th>
+            <th>Town</th>
+            <th>Postcode</th>
+            <th>Country</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="streetTD">Jl Merak</td>
+            <td class="cityTD">Bandung</td>
+            <td class="btnTD">
+                <button data-id="1" type="button" class="use-address" />edit</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="streetTD">Jl. Macet</td>
+            <td class="cityTD">jakarta</td>
+            <td class="btnTD">
+                <button data-id="2" type="button" class="use-address" />edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<script>
+    $(".use-address").click(function() {
+        // find element
+            var $row = $(this).closest("tr");    
+            var $idx = $row.find(".btnTD > button").attr('data-id'); 
+        
+        // get text
+            var streetTB =  $row.find('.streetTD').text();
+            var cityTB  =  $row.find('.cityTD').text();
+            
+        // set element
+            $row.find('.streetTD').html('<textarea>'+streetTB+'</textarea>');
+            $row.find('.cityTD').html('<input type="text" value="'+cityTB+'">');
+            
+        // change button
+            $(this).hide();
+            $row.find('.btnTD').html('<input type="submit" onclick="save('+$idx+')" value="save"> <button onclick="reset('+$idx+')">cancel</button>');
+   
+        console.log($idx);
+   });
+
+    function reset(id){
+        alert('hide form id :'+id);
+        // code here ...
+    }
+    
+    function save(id){
+        alert('saving process id :'+id+'...')
+        // code here ...
+    }
+
+</script>
